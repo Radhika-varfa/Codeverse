@@ -5,6 +5,7 @@ import Dashboard from "./components/Dashboard";
 import Users from "./components/Users";
 import Profile from "./components/Profile";
 import "./App.css";
+import DashboardHome from "./components/DashboardHome";
 
 function App() {
   return (
@@ -31,7 +32,7 @@ const PrivateRoutes = () => {
   return (
     <Routes>
       <Route element={<Dashboard />}>
-        <Route path="/" element={<div>Home Content</div>} />
+        <Route path="/" element=<DashboardHome /> />
         <Route path="/users" element={<Users />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<Navigate to="/" />} />
