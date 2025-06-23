@@ -1,9 +1,9 @@
-import { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/Authcontext";
+import { Box, CssBaseline, Toolbar } from "@mui/material";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
-import { Box, CssBaseline, Toolbar } from "@mui/material";
+import { useState } from "react";
+import { useAuth } from "../context/Authcontext";
 
 const drawerWidth = 240;
 
@@ -43,7 +43,7 @@ const Dashboard = () => {
         }}
       >
         <Toolbar />
-        <Outlet />
+        <Outlet />  
       </Box>
     </Box>
   );

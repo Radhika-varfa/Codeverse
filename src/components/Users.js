@@ -51,6 +51,7 @@ const Users = () => {
           }
         );
         setUsers(data.users);
+        console.log(data.users);
         setTotalUsers(data.total);
         setLoading(false);
       } catch (err) {
@@ -101,7 +102,6 @@ const Users = () => {
   const handleFormSubmit = async (userData) => {
     try {
       if (currentUser) {
-        // Update existing user
         const { data } = await axios.put(
           `https://dummyjson.com/users/${currentUser.id}`,
           userData,

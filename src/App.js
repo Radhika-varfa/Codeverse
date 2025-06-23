@@ -1,7 +1,9 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import { AuthProvider, useAuth } from "./context/Authcontext"; // Fix case sensitivity
+import { AuthProvider, useAuth } from "./context/Authcontext";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
+import Users from "./components/Users";
+import Profile from "./components/Profile";
 import "./App.css";
 
 function App() {
@@ -9,20 +11,33 @@ function App() {
     <AuthProvider>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/*" element={<PrivateRoute />} />
+        <Route path="/*" element={<PrivateRoutes />} />
       </Routes>
     </AuthProvider>
   );
 }
 
-const PrivateRoute = () => {
+const PrivateRoutes = () => {
   const { user, loading } = useAuth();
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  return user ? <Dashboard /> : <Navigate to="/login" />;
+  if (!user) {
+    return <Navigate to="/login" />;
+  }
+
+  return (
+    <Routes>
+      <Route element={<Dashboard />}>
+        <Route path="/" element={<div>Home Content</div>} />
+        <Route path="/users" element={<Users />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Route>
+    </Routes>
+  );
 };
 
 export default App;
